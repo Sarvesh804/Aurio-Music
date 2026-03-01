@@ -54,7 +54,7 @@ self.addEventListener('fetch', event => {
                     if (url.hostname.includes('cloudinary')) {
                         fetch(event.request).then(response => {
                             if (response && response.ok) {
-                                caches.open(CACHE_NAME).then(cache => cache.put(event.request, response));
+                                caches.open(CACHE_NAME).then(cache => cache.put(event.request, response.clone()));
                             }
                         }).catch(() => {});
                     }
@@ -75,7 +75,6 @@ self.addEventListener('fetch', event => {
     // Network-first for all other requests (API calls, etc.)
     event.respondWith(
         fetch(event.request)
-            .then(response => response)
             .catch(() => caches.match(event.request))
     );
 });
