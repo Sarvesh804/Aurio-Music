@@ -830,7 +830,7 @@ function renderBatch(container, sortedSongs, start, end) {
         div.dataset.index = i;
         div.dataset.songId = song.id;
         div.innerHTML = `
-            <img src="${song.cover || song.coverUrl || 'https://via.placeholder.com/56'}" 
+            <img loading="lazy" src="${song.cover || song.coverUrl || 'https://via.placeholder.com/56'}" 
                  alt="${escapeHtml(song.title)}" 
                  class="song-cover"
                  onerror="this.src='https://via.placeholder.com/56?text=♪'">
@@ -940,7 +940,7 @@ function setupIntersectionObserver(container, sortedSongs) {
 function createSongItemHTML(song, index) {
     return `
         <div class="song-item" data-index="${index}" data-song-id="${song.id}">
-            <img src="${song.cover || song.coverUrl || 'https://via.placeholder.com/56'}" 
+            <img loading="lazy" src="${song.cover || song.coverUrl || 'https://via.placeholder.com/56'}" 
                  alt="${escapeHtml(song.title)}" 
                  class="song-cover"
                  onerror="this.src='https://via.placeholder.com/56?text=♪'">
@@ -1039,7 +1039,7 @@ function renderRecentlyPlayed() {
     container.className = 'song-grid recently-played';
     container.innerHTML = songs.map(song => `
         <div class="song-card" onclick="playSongById('${song.id}')">
-            <img src="${song.cover || song.coverUrl || 'https://via.placeholder.com/160'}" 
+            <img loading="lazy" src="${song.cover || song.coverUrl || 'https://via.placeholder.com/160'}" 
                  alt="${escapeHtml(song.title)}">
             <div class="song-card-info">
                 <div class="song-card-title">${escapeHtml(song.title)}</div>
@@ -1178,7 +1178,7 @@ function generateAIRecommendations() {
     container.className = 'song-grid horizontal-slider';
     container.innerHTML = recommendations.map(song => `
         <div class="song-card" onclick="playSongById('${song.id}')">
-            <img src="${song.cover || song.coverUrl || 'https://via.placeholder.com/160'}" 
+            <img loading="lazy" src="${song.cover || song.coverUrl || 'https://via.placeholder.com/160'}" 
                  alt="${escapeHtml(song.title)}">
             <div class="song-card-info">
                 <div class="song-card-title">${escapeHtml(song.title)}</div>
@@ -1211,7 +1211,7 @@ function renderOldIsGold() {
     container.className = 'song-grid horizontal-slider';
     container.innerHTML = selected.map(song => `
         <div class="song-card" onclick="playSongById('${song.id}')">
-            <img src="${song.cover || song.coverUrl || 'https://via.placeholder.com/160'}" 
+            <img loading="lazy" src="${song.cover || song.coverUrl || 'https://via.placeholder.com/160'}" 
                  alt="${escapeHtml(song.title)}">
             <div class="song-card-info">
                 <div class="song-card-title">${escapeHtml(song.title)}</div>
@@ -1263,7 +1263,7 @@ async function renderMostPlayed() {
             return `
                 <div class="song-card with-rank" onclick="playSongById('${song.id}')">
                     <div class="rank-badge ${badgeClass}">${rank}</div>
-                    <img src="${song.cover || song.coverUrl || 'https://via.placeholder.com/160'}" 
+                    <img loading="lazy" src="${song.cover || song.coverUrl || 'https://via.placeholder.com/160'}" 
                          alt="${escapeHtml(song.title)}">
                     <div class="song-card-info">
                         <div class="song-card-title">${escapeHtml(song.title)}</div>
@@ -1317,7 +1317,7 @@ function renderHomeArtists() {
             <div class="artist-card" onclick="openArtist('${escapeHtml(artist.name)}')">
                 <div class="artist-avatar">
                     ${profilePic ? 
-                        `<img src="${profilePic}" alt="${escapeHtml(artist.name)}">` : 
+                        `<img loading="lazy" src="${profilePic}" alt="${escapeHtml(artist.name)}">` : 
                         initial
                     }
                 </div>
@@ -1364,7 +1364,7 @@ function renderHomePlaylists() {
         
         return `
             <div class="song-card" onclick="openPlaylist('${playlist.id}')">
-                <img src="${cover}" 
+                <img loading="lazy" src="${cover}" 
                      alt="${escapeHtml(playlist.name)}">
                 <div class="song-card-info">
                     <div class="song-card-title">${escapeHtml(playlist.name)}</div>
@@ -1385,7 +1385,7 @@ function renderAlbums() {
     
     DOM.albumGrid.innerHTML = AppState.albums.map(album => `
         <div class="album-card" onclick="openAlbum('${escapeHtml(album.name)}')">
-            <img src="${album.cover || 'https://via.placeholder.com/150'}" 
+            <img loading="lazy" src="${album.cover || 'https://via.placeholder.com/150'}" 
                  alt="${escapeHtml(album.name)}" 
                  class="album-cover">
             <div class="album-name">${escapeHtml(album.name)}</div>
@@ -1410,7 +1410,7 @@ function renderArtists() {
         return `
             <div class="artist-card" onclick="openArtist('${escapeHtml(artist.name)}')">
                 <div class="artist-cover">
-                    ${artist.cover ? `<img src="${artist.cover}" alt="${escapeHtml(artist.name)}">` : `<div class="artist-initial">${initial}</div>`}
+                    ${artist.cover ? `<img loading="lazy" src="${artist.cover}" alt="${escapeHtml(artist.name)}">` : `<div class="artist-initial">${initial}</div>`}
                 </div>
                 <div class="artist-name">${escapeHtml(artist.name)}</div>
                 <div class="artist-info">${artist.songs.length} songs</div>
@@ -1425,7 +1425,7 @@ function renderArtists() {
             return `
                 <div class="artist-card-small" onclick="openArtist('${escapeHtml(artist.name)}')">
                     <div class="artist-cover-small">
-                        ${artist.cover ? `<img src="${artist.cover}" alt="${escapeHtml(artist.name)}">` : `<div class="artist-initial-small">${initial}</div>`}
+                        ${artist.cover ? `<img loading="lazy" src="${artist.cover}" alt="${escapeHtml(artist.name)}">` : `<div class="artist-initial-small">${initial}</div>`}
                     </div>
                     <div class="artist-name-small">${escapeHtml(artist.name)}</div>
                 </div>
@@ -1473,7 +1473,7 @@ function renderLikedSongs() {
     
     DOM.likedSongsList.innerHTML = likedSongs.map(song => `
         <div class="song-item" onclick="playSongById('${song.id}')">
-            <img src="${song.cover || song.coverUrl || 'https://via.placeholder.com/56'}" 
+            <img loading="lazy" src="${song.cover || song.coverUrl || 'https://via.placeholder.com/56'}" 
                  alt="${escapeHtml(song.title)}" 
                  class="song-cover">
             <div class="song-info">
@@ -1833,7 +1833,7 @@ function performSearch(query) {
         <div class="song-list">
             ${results.map(song => `
                 <div class="song-item" onclick="playSongById('${song.id}')">
-                    <img src="${song.cover || song.coverUrl || 'https://via.placeholder.com/56'}" 
+                    <img loading="lazy" src="${song.cover || song.coverUrl || 'https://via.placeholder.com/56'}" 
                          alt="${escapeHtml(song.title)}" 
                          class="song-cover">
                     <div class="song-info">
@@ -1857,7 +1857,7 @@ function showSongMenu(songId) {
         <div class="modal-overlay" onclick="closeModal()">
             <div class="song-menu" onclick="event.stopPropagation()">
                 <div class="song-menu-header">
-                    <img src="${song.cover || song.coverUrl || 'https://via.placeholder.com/60'}" alt="${escapeHtml(song.title)}">
+                    <img loading="lazy" src="${song.cover || song.coverUrl || 'https://via.placeholder.com/60'}" alt="${escapeHtml(song.title)}">
                     <div>
                         <div class="song-menu-title">${escapeHtml(song.title)}</div>
                         <div class="song-menu-artist">${escapeHtml(song.artist)}</div>
@@ -2032,7 +2032,7 @@ function openAlbum(albumName) {
                     <h2>Album</h2>
                 </div>
                 <div class="album-view-info">
-                    <img src="${album.cover || 'https://via.placeholder.com/200'}" alt="${escapeHtml(album.name)}">
+                    <img loading="lazy" src="${album.cover || 'https://via.placeholder.com/200'}" alt="${escapeHtml(album.name)}">
                     <h3>${escapeHtml(album.name)}</h3>
                     <p>${escapeHtml(album.artist)}</p>
                     <p>${album.songs.length} songs</p>
@@ -2092,7 +2092,7 @@ function openArtist(artistName) {
         if (artistSongs) {
             artistSongs.innerHTML = artist.songs.map(song => `
                 <div class="song-item" onclick="playSongById('${song.id}')">
-                    <img src="${song.cover || song.coverUrl || 'https://via.placeholder.com/56'}" 
+                    <img loading="lazy" src="${song.cover || song.coverUrl || 'https://via.placeholder.com/56'}" 
                          alt="${escapeHtml(song.title)}">
                     <div class="song-item-info">
                         <div class="song-item-title">${escapeHtml(song.title)}</div>
@@ -2154,7 +2154,7 @@ function openPlaylist(playlistId) {
                 <div class="playlist-songs-list">
                     ${songs.length > 0 ? songs.map(song => `
                         <div class="song-item" onclick="closeModal(); playSongById('${song.id}')">
-                            <img src="${song.cover || song.coverUrl || 'https://via.placeholder.com/56'}" 
+                            <img loading="lazy" src="${song.cover || song.coverUrl || 'https://via.placeholder.com/56'}" 
                                  alt="${escapeHtml(song.title)}" 
                                  class="song-cover">
                             <div class="song-info">
@@ -2614,7 +2614,7 @@ function loadExploreView() {
         DOM.exploreAlbums.innerHTML = albums.map(album => `
             <div class="album-card" onclick="showAlbumDetail('${escapeHtml(album.name)}', '${escapeHtml(album.artist)}')">
                 <div class="album-card-cover">
-                    <img src="${album.cover || 'https://via.placeholder.com/200'}" alt="${escapeHtml(album.name)}">
+                    <img loading="lazy" src="${album.cover || 'https://via.placeholder.com/200'}" alt="${escapeHtml(album.name)}">
                     <div class="album-card-play">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M8 5v14l11-7z"/>
@@ -2642,7 +2642,7 @@ function loadExploreView() {
         DOM.exploreArtists.innerHTML = artists.map(artist => `
             <div class="artist-card" onclick="showArtistView('${escapeHtml(artist.name)}')">
                 <div class="artist-avatar">
-                    <img src="${artist.image || 'https://via.placeholder.com/120'}" alt="${escapeHtml(artist.name)}">
+                    <img loading="lazy" src="${artist.image || 'https://via.placeholder.com/120'}" alt="${escapeHtml(artist.name)}">
                 </div>
                 <div class="artist-name">${escapeHtml(artist.name)}</div>
                 <div class="artist-song-count">${artist.songCount} song${artist.songCount !== 1 ? 's' : ''}</div>
@@ -2835,7 +2835,7 @@ function performEnhancedSearch(query) {
                 <div class="song-list">
                     ${songResults.map(song => `
                         <div class="song-item" onclick="playSongById('${song.id}')">
-                            <img src="${song.cover || song.coverUrl || 'https://via.placeholder.com/56'}" 
+                            <img loading="lazy" src="${song.cover || song.coverUrl || 'https://via.placeholder.com/56'}" 
                                  alt="${escapeHtml(song.title)}" class="song-cover">
                             <div class="song-info">
                                 <div class="song-title">${highlightMatch(escapeHtml(song.title), query)}</div>
@@ -2861,7 +2861,7 @@ function performEnhancedSearch(query) {
                     ${artistResults.map(artist => `
                         <div class="artist-card" onclick="showArtistView('${escapeHtml(artist.name)}')">
                             <div class="artist-avatar">
-                                <img src="${artist.image || 'https://via.placeholder.com/120'}" alt="${escapeHtml(artist.name)}">
+                                <img loading="lazy" src="${artist.image || 'https://via.placeholder.com/120'}" alt="${escapeHtml(artist.name)}">
                             </div>
                             <div class="artist-name">${highlightMatch(escapeHtml(artist.name), query)}</div>
                         </div>
@@ -2879,7 +2879,7 @@ function performEnhancedSearch(query) {
                     ${albumResults.map(album => `
                         <div class="album-card" onclick="showAlbumDetail('${escapeHtml(album.name)}', '${escapeHtml(album.artist)}')">
                             <div class="album-card-cover">
-                                <img src="${album.cover || 'https://via.placeholder.com/200'}" alt="${escapeHtml(album.name)}">
+                                <img loading="lazy" src="${album.cover || 'https://via.placeholder.com/200'}" alt="${escapeHtml(album.name)}">
                             </div>
                             <div class="album-card-info">
                                 <div class="album-card-name">${highlightMatch(escapeHtml(album.name), query)}</div>
@@ -2899,7 +2899,7 @@ function performEnhancedSearch(query) {
                 <div class="playlists-grid">
                     ${playlistResults.map(playlist => `
                         <div class="playlist-card" onclick="openPlaylist('${playlist.id}')">
-                            <img src="${playlist.cover || 'https://via.placeholder.com/200'}" alt="${escapeHtml(playlist.name)}">
+                            <img loading="lazy" src="${playlist.cover || 'https://via.placeholder.com/200'}" alt="${escapeHtml(playlist.name)}">
                             <div class="playlist-info">
                                 <div class="playlist-name">${highlightMatch(escapeHtml(playlist.name), query)}</div>
                             </div>
@@ -3053,7 +3053,7 @@ function renderFilteredSongs(songs) {
         const firstLetter = song.title && song.title.length > 0 ? song.title[0].toUpperCase() : '#';
         return `
         <div class="song-item" data-letter="${firstLetter}" onclick="playSongAtIndex(${AppState.allSongs.indexOf(song)})">
-            <img src="${song.cover || song.coverUrl || 'https://via.placeholder.com/56'}" 
+            <img loading="lazy" src="${song.cover || song.coverUrl || 'https://via.placeholder.com/56'}" 
                  alt="${escapeHtml(song.title)}" class="song-cover">
             <div class="song-info">
                 <div class="song-title">${escapeHtml(song.title)}</div>
@@ -3158,7 +3158,7 @@ function renderUserPlaylists() {
     DOM.userPlaylistsGrid.innerHTML = AppState.userPlaylists.map(playlist => `
         <div class="playlist-card">
             <div class="playlist-card-cover" onclick="openPlaylist('${playlist.id}', true)">
-                <img src="${playlist.cover || 'https://via.placeholder.com/200'}" alt="${escapeHtml(playlist.name)}">
+                <img loading="lazy" src="${playlist.cover || 'https://via.placeholder.com/200'}" alt="${escapeHtml(playlist.name)}">
                 <div class="playlist-card-play">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M8 5v14l11-7z"/>
@@ -3252,7 +3252,7 @@ function showEditPlaylistModal(playlistId) {
                         <polyline points="6 9 12 15 18 9"/>
                     </svg>
                 </button>
-                <img src="${song.cover || song.coverUrl || 'https://via.placeholder.com/40'}" alt="${escapeHtml(song.title)}">
+                <img loading="lazy" src="${song.cover || song.coverUrl || 'https://via.placeholder.com/40'}" alt="${escapeHtml(song.title)}">
                 <div class="song-info">
                     <div class="song-title">${escapeHtml(song.title)}</div>
                     <div class="song-artist">${escapeHtml(song.artist)}</div>
@@ -3316,7 +3316,7 @@ function showAddToPlaylist(songId) {
             return `
                 <div class="playlist-selection-item ${isInPlaylist ? 'selected' : ''}" 
                      onclick="toggleSongInPlaylist('${playlist.id}', '${songId}')">
-                    <img src="${playlist.cover || 'https://via.placeholder.com/48'}" alt="${escapeHtml(playlist.name)}">
+                    <img loading="lazy" src="${playlist.cover || 'https://via.placeholder.com/48'}" alt="${escapeHtml(playlist.name)}">
                     <div class="playlist-info">
                         <div class="playlist-name">${escapeHtml(playlist.name)}</div>
                         <div class="playlist-count">${songs.length} songs</div>
@@ -3401,7 +3401,7 @@ function updateQueueDisplay() {
         DOM.currentQueue.innerHTML = AppState.queue.map((song, index) => `
             <div class="queue-item">
                 <div class="queue-number">${index + 1}</div>
-                <img src="${song.cover || song.coverUrl || 'https://via.placeholder.com/48'}" alt="${escapeHtml(song.title)}">
+                <img loading="lazy" src="${song.cover || song.coverUrl || 'https://via.placeholder.com/48'}" alt="${escapeHtml(song.title)}">
                 <div class="song-info">
                     <div class="song-title">${escapeHtml(song.title)}</div>
                     <div class="song-artist">${escapeHtml(song.artist)}</div>
@@ -3425,7 +3425,7 @@ function generateSuggestedQueue() {
     
     DOM.suggestedQueue.innerHTML = suggestions.map(song => `
         <div class="queue-item" onclick="addSuggestedToQueue('${song.id}')">
-            <img src="${song.cover || song.coverUrl || 'https://via.placeholder.com/48'}" alt="${escapeHtml(song.title)}">
+            <img loading="lazy" src="${song.cover || song.coverUrl || 'https://via.placeholder.com/48'}" alt="${escapeHtml(song.title)}">
             <div class="song-info">
                 <div class="song-title">${escapeHtml(song.title)}</div>
                 <div class="song-artist">${escapeHtml(song.artist)}</div>
